@@ -5,9 +5,9 @@ const validSettings = /** @type {const} */ ([
 ]);
 const groupsUrlRegex = /^\/groups\/\d+?\/?$/;
 const setDefaultSorting = async () => {
-    if (!location.pathname.match(groupsUrlRegex)) return;
-    const params = new URLSearchParams(location.search);
-    if (params.has("sorting_setting")) return;
+    const url = new URL(location);
+    if (!url.pathname.match(groupsUrlRegex)) return;
+    if (url.searchParams.has("sorting_setting")) return;
     let { default_sorting_setting } = await chrome.storage.sync.get(
         "default_sorting_setting"
     );
@@ -17,8 +17,8 @@ const setDefaultSorting = async () => {
             default_sorting_setting: default_sorting_setting,
         });
     }
-    params.append("sorting_setting", default_sorting_setting);
-    location.search = params.toString();
+    url.searchParams.append("sorting_setting", default_sorting_setting);
+    history.replaceState({}, "", url.toString());
 };
 setDefaultSorting();
 // --- Handles SPA redirects
