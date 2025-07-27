@@ -9,7 +9,7 @@
     "permissions": ["storage"],
     "content_scripts": [
         {
-            "matches": ["https://www.facebook.com/groups/*"],
+            "matches": ["https://www.facebook.com/*"],
             "js": ["scripts/content.js"],
             "run_at": "document_start"
         }
