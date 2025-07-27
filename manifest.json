@@ -1,0 +1,16 @@
+{
+    "name": "Chrono Groups",
+    "description": "Sets chronological order as default when visiting Facebook groups",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.facebook.com/groups/*"],
+            "js": ["scripts/content.js"],
+            "run_at": "document_start"
+        }
+    ]
+}
