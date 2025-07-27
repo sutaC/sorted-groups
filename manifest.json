@@ -3,10 +3,11 @@
     "description": "Sets default sorting order when visiting Facebook groups",
     "version": "1.0.0",
     "manifest_version": 3,
+    "homepage_url": "https://github.com/sutaC/sorted-groups",
+    "permissions": ["storage"],
     "action": {
         "default_popup": "popup/popup.html"
     },
-    "permissions": ["storage"],
     "content_scripts": [
         {
             "matches": ["https://www.facebook.com/*"],
