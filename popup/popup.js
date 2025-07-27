@@ -10,8 +10,8 @@ const validSettings = /** @type {const} */ ([
  */
 async function setDefaultSorting(val) {
     if (!validSettings.includes(val)) {
+        if (!val) console.error("Invalid default value: ", val);
         val = validSettings[0];
-        console.error("Invalid default value: ", val);
     }
     await chrome.storage.sync.set({
         default_sorting_setting: val,

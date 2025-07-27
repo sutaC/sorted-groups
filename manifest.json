@@ -1,7 +1,7 @@
 {
     "name": "Sorted Groups",
     "description": "Sets default sorting order when visiting Facebook groups",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "manifest_version": 3,
     "homepage_url": "https://github.com/sutaC/sorted-groups",
     "permissions": ["storage"],
