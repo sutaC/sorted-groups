@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-background: #cbdbf2;
+    --clr-text: #061933;
+    --clr-accent: #354f73;
+}
+
+html {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+    color: var(--clr-text);
+    background: var(--clr-background);
+    border: 1px solid var(--clr-accent);
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0;
+    line-height: 115%;
+    font-size: 1.25rem;
+}
+
+main {
+    margin: 1rem 0;
+}
+
+select {
+    border: 2px solid var(--clr-accent);
+    border-radius: 2px;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a {
+    color: var(--clr-accent);
+}
