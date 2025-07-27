@@ -18,7 +18,10 @@ const setDefaultSorting = async () => {
         });
     }
     url.searchParams.append("sorting_setting", default_sorting_setting);
+    // Quick SPA redirect
     history.replaceState({}, "", url.toString());
+    // Reload added to ensure loading proper content, however slows down page loading time
+    location.reload();
 };
 setDefaultSorting();
 // --- Handles SPA redirects
