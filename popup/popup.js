@@ -4,7 +4,7 @@ const validSettings = /** @type {const} */ ([
     "CHRONOLOGICAL",
 ]);
 /**
- * Saves default sorting_setting value in sync storage
+ * Saves default sorting_setting value in local storage
  * @param {string} val - Default sorting_setting value
  * @returns Saved sorting_setting value
  */
@@ -13,13 +13,13 @@ async function setDefaultSorting(val) {
         if (!val) console.error("Invalid default value: ", val);
         val = validSettings[0];
     }
-    await chrome.storage.sync.set({
+    await chrome.storage.local.set({
         default_sorting_setting: val,
     });
     return val;
 }
 document.addEventListener("DOMContentLoaded", async () => {
-    let { default_sorting_setting } = await chrome.storage.sync.get([
+    let { default_sorting_setting } = await chrome.storage.local.get([
         "default_sorting_setting",
     ]);
     const select = document.getElementById("default_sorting_setting");

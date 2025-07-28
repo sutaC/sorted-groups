@@ -5,18 +5,26 @@ const validSettings = /** @type {const} */ ([
 ]);
 const groupsUrlRegex = /^\/groups\/\d+?\/?$/;
 /**
+ * Checks if chrome storage is avaliable
+ * @returns {boolean} If chrome storage is avaliable
+ */
+const isChromeStoreAvaliable = () => chrome.storage && chrome.storage.local;
+/**
  * Sets default sorting setting on group page
  */
 const setDefaultSorting = async () => {
+    if (!isChromeStoreAvaliable()) {
+        console.warn("Chrome store is not avaliable");
+    }
     const url = new URL(location);
     if (!url.pathname.match(groupsUrlRegex)) return;
     if (url.searchParams.has("sorting_setting")) return;
-    let { default_sorting_setting } = await chrome.storage.sync.get(
+    let { default_sorting_setting } = await chrome.storage.local.get(
         "default_sorting_setting"
     );
     if (!validSettings.includes(default_sorting_setting)) {
         default_sorting_setting = validSettings[0];
-        await chrome.storage.sync.set({
+        await chrome.storage.local.set({
             default_sorting_setting: default_sorting_setting,
         });
     }
