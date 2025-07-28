@@ -4,6 +4,9 @@ const validSettings = /** @type {const} */ ([
     "CHRONOLOGICAL",
 ]);
 const groupsUrlRegex = /^\/groups\/\d+?\/?$/;
+/**
+ * Sets default sorting setting on group page
+ */
 const setDefaultSorting = async () => {
     const url = new URL(location);
     if (!url.pathname.match(groupsUrlRegex)) return;
@@ -18,22 +21,22 @@ const setDefaultSorting = async () => {
         });
     }
     url.searchParams.append("sorting_setting", default_sorting_setting);
-    // Quick SPA redirect
-    history.replaceState({}, "", url.toString());
-    // Reload added to ensure loading proper content, however slows down page loading time
-    location.reload();
+    // Reloads to ensure loading proper content, however slows down page loading time
+    location.replace(url);
 };
-setDefaultSorting();
-// --- Handles SPA redirects
-let lastUrl = location.href;
-const checkUrlChange = () => {
-    const currentUrl = location.href;
-    if (currentUrl === lastUrl) return;
-    lastUrl = currentUrl;
+document.addEventListener("DOMContentLoaded", () => {
     setDefaultSorting();
-};
-const observer = new MutationObserver(checkUrlChange.bind(this));
-observer.observe(document, {
-    subtree: true,
-    childList: true,
+    // --- Handles SPA redirects
+    let lastUrl = location.href;
+    const checkUrlChange = () => {
+        const currentUrl = location.href;
+        if (currentUrl === lastUrl) return;
+        lastUrl = currentUrl;
+        setDefaultSorting();
+    };
+    const observer = new MutationObserver(checkUrlChange.bind(this));
+    observer.observe(document, {
+        subtree: true,
+        childList: true,
+    });
 });
