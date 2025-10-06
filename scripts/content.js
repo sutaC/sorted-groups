@@ -3,7 +3,7 @@ const validSettings = /** @type {const} */ ([
     "RECENT_ACTIVITY",
     "CHRONOLOGICAL",
 ]);
-const groupsUrlRegex = /^\/groups\/\d+?\/?$/;
+const groupsUrlRegex = /^\/groups\/\w+?\/?$/;
 /**
  * Checks if chrome storage is avaliable
  * @returns {boolean} If chrome storage is avaliable
